@@ -1,0 +1,54 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/reminders",
+      "schedule": "0 22 * * *"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "hectork9.com"
+        }
+      ],
+      "destination": "https://hektork9.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "hektorcanine.com"
+        }
+      ],
+      "destination": "https://hektork9.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "hectorcanine.com"
+        }
+      ],
+      "destination": "https://hektork9.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.hektork9.com"
+        }
+      ],
+      "destination": "https://hektork9.com/:path*",
+      "permanent": true
+    }
+  ]
+}
