@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HeroPlaceholder } from "@/components/hero-placeholder";
 
 export const metadata: Metadata = {
   title: "About",
@@ -11,8 +12,8 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-border pt-16">
-        <div className="mx-auto max-w-6xl px-6 py-24">
+      <section className="hero-texture relative border-b border-border pt-16">
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-24">
           <p className="font-mono text-xs tracking-[0.3em] text-kupfer">
             ABOUT
           </p>
@@ -56,12 +57,20 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="flex items-start justify-center">
-              {/* Photo placeholder */}
-              <div className="flex aspect-[3/4] w-full max-w-sm items-center justify-center rounded-lg border border-border bg-schiefer">
-                <span className="font-mono text-xs text-nebel">
-                  TRAINER PHOTO
-                </span>
-              </div>
+              <HeroPlaceholder
+                aspect="aspect-[3/4]"
+                className="w-full max-w-sm"
+                label="ABOUT — TRAINER"
+                shotDirection="Charles: Professional portrait"
+                shotDetails={[
+                  "3/4 body shot, standing confident but approachable",
+                  "Dark tactical-casual attire (navy/black polo, clean pants)",
+                  "Leash or training lead in hand — shows readiness",
+                  "Outdoor with neutral background (grass field, concrete wall)",
+                  "Natural light, slight side-light for dimension",
+                  "Expression: calm, direct, professional",
+                ]}
+              />
             </div>
           </div>
         </div>
@@ -72,12 +81,20 @@ export default function AboutPage() {
         <div className="mx-auto max-w-6xl px-6 py-24">
           <div className="grid gap-16 md:grid-cols-2">
             <div className="order-2 flex items-start justify-center md:order-1">
-              {/* Photo placeholder */}
-              <div className="flex aspect-[3/4] w-full max-w-sm items-center justify-center rounded-lg border border-border bg-schiefer">
-                <span className="font-mono text-xs text-nebel">
-                  HEKTOR PHOTO
-                </span>
-              </div>
+              <HeroPlaceholder
+                aspect="aspect-[3/4]"
+                className="w-full max-w-sm"
+                label="ABOUT — HEKTOR"
+                shotDirection="Hektor: The Noble Down"
+                shotDetails={[
+                  "Full body profile in a down-stay or sit-stay",
+                  "Alert ears, forward gaze, mouth closed",
+                  "Clean surface — stone patio, dark wood, grass",
+                  "Show his build and posture — he should look athletic",
+                  "85mm lens, shallow depth of field",
+                  "This shot proves the standard — composure and presence",
+                ]}
+              />
             </div>
             <div className="order-1 md:order-2">
               <h2 className="font-display text-2xl font-bold text-weiss">
@@ -112,8 +129,8 @@ export default function AboutPage() {
       </section>
 
       {/* Methodology detail */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-6 py-24">
+      <section className="hero-texture relative border-b border-border">
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-24">
           <p className="font-mono text-xs tracking-[0.3em] text-kupfer">
             METHODOLOGY
           </p>
@@ -184,8 +201,8 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-kohle">
-        <div className="mx-auto max-w-6xl px-6 py-24 text-center">
+      <section className="hero-texture relative bg-kohle">
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-24 text-center">
           <h2 className="font-display text-3xl font-bold tracking-tight text-weiss">
             See the methods in action
           </h2>

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function BookPage() {
   return (
     <>
-      <section className="border-b border-border pt-16">
+      <section className="hero-texture relative border-b border-border pt-16">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <div className="grid gap-16 md:grid-cols-2">
             <div>

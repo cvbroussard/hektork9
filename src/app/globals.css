@@ -2,25 +2,25 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
-  /* Schwarz Brand Palette */
-  --color-schwarz: #111111;
-  --color-kohle: #1A1A1A;
-  --color-schiefer: #252525;
+  /* Schwarz Brand Palette — warmed */
+  --color-schwarz: #131210;
+  --color-kohle: #1C1B18;
+  --color-schiefer: #272520;
   --color-stahl: #8A8D8F;
   --color-nebel: #999999;
   --color-kupfer: #B87333;
   --color-kupfer-light: #D4955A;
   --color-kupfer-dark: #8F5A28;
-  --color-weiss: #FFFFFF;
+  --color-weiss: #FAF9F7;
 
   /* Semantic aliases */
-  --color-background: #111111;
-  --color-surface: #1A1A1A;
-  --color-surface-elevated: #252525;
-  --color-foreground: #FFFFFF;
+  --color-background: #131210;
+  --color-surface: #1C1B18;
+  --color-surface-elevated: #272520;
+  --color-foreground: #FAF9F7;
   --color-muted: #999999;
   --color-accent: #B87333;
-  --color-border: #2A2A2A;
+  --color-border: #2E2C27;
 
   /* Fonts */
   --font-display: var(--font-space-grotesk);
@@ -53,6 +53,61 @@ hr {
 ::selection {
   background: var(--color-kupfer);
   color: var(--color-schwarz);
+}
+
+/* Hero section pattern overlay */
+.hero-texture {
+  position: relative;
+}
+
+.hero-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(184, 115, 51, 0.04) 1px, transparent 0);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+.hero-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(184, 115, 51, 0.03) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(184, 115, 51, 0.02) 100%
+  );
+  pointer-events: none;
+}
+
+/* Photo placeholder styling */
+.photo-placeholder {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    #1C1B18 0%,
+    #272520 50%,
+    #1C1B18 100%
+  );
+}
+
+.photo-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(45deg, rgba(184, 115, 51, 0.05) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(184, 115, 51, 0.05) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(184, 115, 51, 0.05) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(184, 115, 51, 0.05) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  pointer-events: none;
 }
 
 /* Prose overrides for dark blog content */

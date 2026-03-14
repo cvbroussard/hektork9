@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HeroPlaceholder } from "@/components/hero-placeholder";
 
 export const metadata: Metadata = {
   title: "Results",
@@ -35,7 +36,7 @@ export default function ResultsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-border pt-16">
+      <section className="hero-texture relative border-b border-border pt-16">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <p className="font-mono text-xs tracking-[0.3em] text-kupfer">
             RESULTS
@@ -123,16 +124,39 @@ export default function ResultsPage() {
             Follow our training sessions and results on social media.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {[1, 2, 3].map((n) => (
-              <div
-                key={n}
-                className="flex aspect-square items-center justify-center rounded-lg border border-border bg-schiefer"
-              >
-                <span className="font-mono text-xs text-nebel">
-                  VIDEO / PHOTO {n}
-                </span>
-              </div>
-            ))}
+            <HeroPlaceholder
+              aspect="aspect-square"
+              label="RESULTS — HEEL"
+              shotDirection="Perfect heel: side view"
+              shotDetails={[
+                "Dog shoulder aligned with handler's leg",
+                "Both moving, dog looking up at handler",
+                "Low angle, tracking shot if video",
+                "Outdoor — sidewalk, park path, or field",
+              ]}
+            />
+            <HeroPlaceholder
+              aspect="aspect-square"
+              label="RESULTS — NEUTRALITY"
+              shotDirection="Environmental neutrality"
+              shotDetails={[
+                "Dog in place/down-stay with distractions visible",
+                "Another dog walking by in background (out of focus)",
+                "The subject dog is completely still and composed",
+                "This proves the training — show the contrast",
+              ]}
+            />
+            <HeroPlaceholder
+              aspect="aspect-square"
+              label="RESULTS — RECALL"
+              shotDirection="Off-leash recall"
+              shotDetails={[
+                "Dog mid-run toward camera on recall",
+                "Compressed telephoto shot (135mm+)",
+                "Athletic, powerful, controlled — not chaotic",
+                "Open field or park, clean background",
+              ]}
+            />
           </div>
           <div className="mt-8 flex gap-4">
             <a
@@ -156,7 +180,7 @@ export default function ResultsPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-kohle">
+      <section className="hero-texture relative bg-kohle">
         <div className="mx-auto max-w-6xl px-6 py-24 text-center">
           <h2 className="font-display text-3xl font-bold tracking-tight text-weiss">
             Ready for results like these?

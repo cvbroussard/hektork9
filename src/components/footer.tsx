@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./logo";
+import { BrandReveal } from "./brand-reveal";
 
 export function Footer() {
   const pathname = usePathname();
@@ -10,6 +11,8 @@ export function Footer() {
   if (pathname?.startsWith("/admin")) return null;
 
   return (
+    <>
+    <BrandReveal />
     <footer className="border-t border-border bg-schwarz">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-3">
@@ -112,5 +115,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
