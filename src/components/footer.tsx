@@ -13,7 +13,7 @@ export function Footer() {
   return (
     <>
     <BrandReveal />
-    <footer className="border-t border-border bg-schwarz">
+    <footer className="bg-schwarz">
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-3">
           {/* Brand */}
