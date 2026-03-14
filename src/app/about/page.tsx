@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroPlaceholder } from "@/components/hero-placeholder";
+import { PersonSchema, BreadcrumbSchema } from "@/components/structured-data";
 
 export const metadata: Metadata = {
   title: "About",
@@ -11,6 +12,14 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", href: "/" },
+          { name: "About", href: "/about" },
+        ]}
+      />
+      <PersonSchema />
+
       {/* Hero */}
       <section className="hero-texture relative border-b border-border pt-16">
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-24">

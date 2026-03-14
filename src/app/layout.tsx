@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { spaceGrotesk, ibmPlexSans, ibmPlexMono } from "@/lib/fonts";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { GoogleAnalytics } from "@/components/analytics";
 import { LocalBusinessSchema } from "@/components/structured-data";
 import "./globals.css";
 
@@ -18,6 +19,11 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Hektor K9",
   },
+  twitter: {
+    card: "summary_large_image",
+    site: "@hektor_k9",
+    creator: "@hektor_k9",
+  },
 };
 
 export default function RootLayout({
@@ -33,6 +39,7 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} antialiased`}
       >
+        <GoogleAnalytics />
         <Navigation />
         <main>{children}</main>
         <Footer />

@@ -51,6 +51,13 @@ export function BookingForm() {
       }
 
       setStatus("success");
+
+      if (typeof window !== "undefined" && typeof window.gtag === "function") {
+        window.gtag("event", "generate_lead", {
+          event_category: "booking",
+          event_label: form.objective,
+        });
+      }
     } catch (err) {
       setStatus("error");
       setErrorMessage(err instanceof Error ? err.message : "Something went wrong");

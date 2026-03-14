@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ServiceSchema, FAQSchema, BreadcrumbSchema } from "@/components/structured-data";
 
 export const metadata: Metadata = {
   title: "Programs",
@@ -83,9 +84,52 @@ const programs = [
   },
 ];
 
+const faqs = [
+  {
+    question: "How much does dog training cost in West Palm Beach?",
+    answer:
+      "Our programs range from $1,500 to $2,250 depending on scope. The Obedience Program (6 sessions) is $1,500, the Foundation Program for puppies (6 sessions) is $1,650, the CGC Test Prep & Evaluation (6 sessions + official AKC test) is $1,800, and our most comprehensive program (10 sessions) is $2,250. Single sessions are available at $300/hour.",
+  },
+  {
+    question: "What is the AKC Canine Good Citizen test?",
+    answer:
+      "The AKC Canine Good Citizen (CGC) test is a 10-item evaluation that certifies your dog demonstrates good manners in public and at home. Items include accepting a friendly stranger, sitting politely for petting, walking through a crowd, and coming when called. As an AKC CGC Evaluator, Charles both prepares your dog and administers the official test.",
+  },
+  {
+    question: "How long does it take to train a dog?",
+    answer:
+      "Most dogs show measurable improvement within 3 sessions. Our standard programs run 6 sessions over 3-6 weeks. Complex behavioral issues may benefit from our 10-session Comprehensive Program. The timeline depends on your dog's age, temperament, and the specific behaviors being addressed. Puppies in our Foundation Program (8 weeks to 5 months) develop fastest because they are in their critical learning window.",
+  },
+  {
+    question: "Do you offer in-home dog training?",
+    answer:
+      "Yes. Training sessions take place at your home or an agreed-upon location in the West Palm Beach area. We serve West Palm Beach, Palm Beach, Jupiter, Wellington, Boca Raton, and Delray Beach. Training in the dog's actual environment produces better real-world results.",
+  },
+  {
+    question: "What age should I start training my puppy?",
+    answer:
+      "As early as 8 weeks. The cognitive development window between 8-20 weeks is the most impactful period for shaping a puppy's behavior for life. Our Foundation Program is specifically designed for puppies 8 weeks to 5 months and covers environmental neutrality, impulse control, early leash communication, and socialization — the building blocks for a lifetime of reliability.",
+  },
+];
+
+const serviceSchemaData = programs.map((p) => ({
+  name: p.name,
+  description: `${p.focus}. ${p.outcomes.slice(0, 3).join(". ")}.`,
+  price: p.totalPrice.replace("$", "").replace(",", ""),
+}));
+
 export default function ProgramsPage() {
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Programs", href: "/programs" },
+        ]}
+      />
+      <ServiceSchema services={serviceSchemaData} />
+      <FAQSchema questions={faqs} />
+
       {/* Hero */}
       <section className="border-b border-border pt-16">
         <div className="mx-auto max-w-6xl px-6 py-24">
@@ -261,6 +305,36 @@ export default function ProgramsPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-6xl px-6 py-24">
+          <p className="font-mono text-xs tracking-[0.3em] text-kupfer">
+            FREQUENTLY ASKED
+          </p>
+          <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-weiss">
+            Common questions
+          </h2>
+          <div className="mt-10 divide-y divide-border">
+            {faqs.map((faq) => (
+              <details
+                key={faq.question}
+                className="group py-6"
+              >
+                <summary className="flex cursor-pointer items-center justify-between text-weiss font-medium">
+                  {faq.question}
+                  <span className="ml-4 shrink-0 text-kupfer transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-4 text-sm leading-relaxed text-stahl">
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
           </div>
         </div>
       </section>

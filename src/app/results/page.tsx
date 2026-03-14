@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroPlaceholder } from "@/components/hero-placeholder";
+import { ReviewSchema, BreadcrumbSchema } from "@/components/structured-data";
 
 export const metadata: Metadata = {
   title: "Results",
@@ -35,6 +36,21 @@ const testimonials = [
 export default function ResultsPage() {
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Results", href: "/results" },
+        ]}
+      />
+      <ReviewSchema
+        ratingValue={5}
+        reviewCount={testimonials.length}
+        reviews={testimonials.map((t) => ({
+          body: t.quote,
+          author: t.client,
+        }))}
+      />
+
       {/* Hero */}
       <section className="hero-texture relative border-b border-border pt-16">
         <div className="mx-auto max-w-6xl px-6 py-24">
