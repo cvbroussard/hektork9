@@ -1,54 +1,67 @@
 "use client";
 
+import { useCallback, useRef, useState } from "react";
+
 export function BrandReveal() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [maskPos, setMaskPos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setMaskPos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    },
+    []
+  );
+
+  const maskStyle = isHovered
+    ? {
+        maskImage: `radial-gradient(circle at ${maskPos.x}px ${maskPos.y}px, rgb(0,0,0) 0%, rgba(0,0,0,0.4) 25%, rgba(0,0,0,0) 55%)`,
+        WebkitMaskImage: `radial-gradient(circle at ${maskPos.x}px ${maskPos.y}px, rgb(0,0,0) 0%, rgba(0,0,0,0.4) 25%, rgba(0,0,0,0) 55%)`,
+      }
+    : {};
+
   return (
-    <div className="relative flex items-center justify-center overflow-hidden bg-schwarz py-24 select-none md:py-32">
-      {/* The large logotype */}
-      <div className="brand-reveal-container relative cursor-pointer px-6">
-        <div className="font-display text-center text-[clamp(3rem,12vw,10rem)] font-bold leading-none tracking-[0.15em] text-kupfer/15">
-          HEKTOR
-        </div>
-        <div className="font-display text-center text-[clamp(1.5rem,6vw,5rem)] font-medium tracking-[0.4em] text-kupfer/10">
-          K9
+    <div className="relative flex items-center justify-center overflow-hidden bg-schwarz py-20 select-none md:py-28">
+      <div
+        ref={containerRef}
+        className="relative w-full cursor-pointer px-4"
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Base text — always visible at low opacity */}
+        <div className="font-display whitespace-nowrap text-center text-[clamp(2.5rem,10vw,9rem)] font-bold leading-none tracking-[0.15em] text-kupfer/10">
+          HEKTOR K9
         </div>
 
-        {/* Gradient overlay that slides away on hover */}
-        <div className="brand-reveal-mask pointer-events-none absolute inset-0" />
+        {/* Reveal layer — masked by radial gradient following cursor */}
+        <div
+          className="pointer-events-none absolute inset-0 flex items-center justify-center px-4"
+          style={maskStyle}
+        >
+          <div className="font-display whitespace-nowrap text-center text-[clamp(2.5rem,10vw,9rem)] font-bold leading-none tracking-[0.15em] text-kupfer/50">
+            HEKTOR K9
+          </div>
+        </div>
+
+        {/* SVG noise filter overlay for texture */}
+        <svg className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.03]">
+          <filter id="brandNoise">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.8"
+              numOctaves="4"
+              stitchTiles="stitch"
+            />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#brandNoise)" />
+        </svg>
       </div>
-
-      <style>{`
-        .brand-reveal-mask {
-          background: linear-gradient(
-            180deg,
-            rgba(19, 18, 16, 0.95) 0%,
-            rgba(19, 18, 16, 0.85) 40%,
-            rgba(19, 18, 16, 0.6) 70%,
-            rgba(19, 18, 16, 0) 100%
-          );
-          transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .brand-reveal-container:hover .brand-reveal-mask {
-          opacity: 0;
-          transform: translateY(-100%);
-        }
-
-        .brand-reveal-container:hover div:first-child {
-          color: rgba(184, 115, 51, 0.6);
-          transition: color 1s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .brand-reveal-container:hover div:nth-child(2) {
-          color: rgba(184, 115, 51, 0.4);
-          transition: color 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
-        }
-
-        .brand-reveal-container div:first-child,
-        .brand-reveal-container div:nth-child(2) {
-          transition: color 0.6s ease;
-        }
-      `}</style>
     </div>
   );
 }
